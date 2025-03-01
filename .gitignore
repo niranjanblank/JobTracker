@@ -1,0 +1,94 @@
+
+# -----------------------------
+# GLOBAL IGNORE (Both Backend & Frontend)
+# -----------------------------
+
+# Ignore local environment files (Secrets)
+.env
+.env.local
+frontend/.env.local
+
+# Ignore logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore editor/IDE files
+.vscode/
+.idea/
+
+# Ignore dependency caches
+node_modules/
+**/node_modules/
+
+# Ignore build output
+dist/
+out/
+.next/
+bin/
+obj/
+
+# Ignore database migrations
+Migrations/
+
+# Ignore coverage reports
+coverage/
+
+# Ignore compiled code files
+*.dll
+*.exe
+*.so
+*.dylib
+*.pdb
+*.db
+
+# -----------------------------
+# BACKEND-SPECIFIC IGNORE (ASP.NET Core)
+# -----------------------------
+
+# Ignore ASP.NET secret files
+secrets.json
+secrets/
+
+# Ignore Visual Studio files
+*.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignore ASP.NET auto-generated config files
+appsettings.json
+appsettings.Development.json
+
+# Ignore publish output
+publish/
+wwwroot/
+
+# -----------------------------
+# FRONTEND-SPECIFIC IGNORE (Next.js / React)
+# -----------------------------
+
+# Ignore Next.js build output
+.next/
+
+# Ignore Next.js static exports
+out/
+
+# Ignore React build output
+build/
+
+# Ignore temporary files
+npm-debug.log
+yarn-debug.log
+lerna-debug.log
+
+# Ignore lock files
+package-lock.json
+yarn.lock
+
