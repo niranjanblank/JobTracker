@@ -7,7 +7,7 @@ namespace JobTracker.Repositories
     public class GenericRepository<T>: IGenericRepository<T> where T: class
     {
         private readonly JobDbContext _context;
-        pirvate readonly DBSet<T> _dbSet;
+        private readonly DbSet<T> _dbSet;
 
         public GenericRepository(JobDbContext context)
         {
@@ -32,7 +32,7 @@ namespace JobTracker.Repositories
             return entity;
         }
 
-        public async Task<Bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             var entity = await _dbSet.FindAsync(id);
             if (entity == null)

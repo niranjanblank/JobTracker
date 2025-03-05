@@ -6,10 +6,10 @@ namespace JobTracker.Services
 {
     public interface IUserService
     {
-        Task<IEnumerable<T>> GetAllAsync();
+        Task<IEnumerable<User>> GetAllUsersAsync();
         Task<User?> GetUserByIdAsync(int id);
         Task<User> AddUserAsync(User user);
         Task<bool> DeleteUserAsync(int id);
-        Task<User>? GetUserByEmailAsync(string email);
+        Task<User?> GetUserByEmailAsync(string email);
     }
 }

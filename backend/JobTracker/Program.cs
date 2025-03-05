@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using JobTracker.Data;
+using JobTracker.Repositories;
+using JobTracker.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +24,14 @@ var connectionString = $"Host={dbHost};Port={dbPort};Database={dbName};Username=
 builder.Services.AddDbContext<JobDbContext>(options =>
     options.UseNpgsql(connectionString));
 
+
+// Register Generic Repository
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+// Register Services
+builder.Services.AddScoped<IUserService, UserService>();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -30,8 +40,8 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c => c.RoutePrefix = "docs");
+    app.UseSwagger(); // Enables Swagger JSON
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
