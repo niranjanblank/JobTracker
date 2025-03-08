@@ -10,6 +10,9 @@ namespace JobTracker.Data
         // register the user entity 
         public DbSet<User> Users { get; set; }
 
+        // register the company entity
+        public DbSet<Company> Companies { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
