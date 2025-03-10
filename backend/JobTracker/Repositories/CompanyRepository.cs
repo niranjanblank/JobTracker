@@ -19,7 +19,6 @@ namespace JobTracker.Repositories
         public async Task<IEnumerable<Company>> GetCompaniesByUserIdAsync(int userId)
         {
             return await _context.Companies
-                .Include(c => c.User) // include the user details
                 .Where(c => c.UserId == userId)
                 .ToListAsync(); 
         }

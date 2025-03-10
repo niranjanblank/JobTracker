@@ -12,6 +12,8 @@ namespace JobTracker.Models
         public string Name { get; set; } = string.Empty;
 
         // foreing key to user
+        [Required]
+        [ForeignKey("User")]
         public int UserId { get; set; }
 
         public string Location { get; set; } = string.Empty;
@@ -19,9 +21,6 @@ namespace JobTracker.Models
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
-
-        [ForeignKey("UserId")]
-        public User User { get; set; } = null!;  // ensures that the user isnt nullable
 
     }
 }
