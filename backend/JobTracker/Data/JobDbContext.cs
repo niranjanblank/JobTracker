@@ -16,6 +16,9 @@ namespace JobTracker.Data
         // register the job entity
         public DbSet<Job> Jobs { get; set; }
 
+        // register the application entity
+        public DbSet<Application> Applications { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // One-to-Many: User -> Jobs (Required)
@@ -40,6 +43,12 @@ namespace JobTracker.Data
                 .HasForeignKey(j => j.CompanyId)
                 .OnDelete(DeleteBehavior.SetNull); // If Company is deleted, its Jobs' CompanyId becomes NULL
 
+            modelBuilder.Entity<Job>()
+                .HasOne<Application>(j => j.Application) //  Defines One-to-One
+                .WithOne(a => a.Job)
+                .HasForeignKey<Application>(a => a.JobId)
+                .OnDelete(DeleteBehavior.Cascade); // Deleting a Job deletes its Application
+
             // Store Enums as Strings
             modelBuilder.Entity<Job>()
                 .Property(j => j.JobType)
@@ -49,8 +58,19 @@ namespace JobTracker.Data
                 .Property(j => j.EmploymentType)
                 .HasConversion<string>();
 
+            // 1-1 : Application -> Job
+            modelBuilder.Entity<Application>()
+                .HasOne<Job>(a=>a.Job)
+                .WithOne(j => j.Application)
+                .HasForeignKey<Application>(a => a.JobId)
+                .OnDelete(DeleteBehavior.Cascade); // Deleting a Job deletes its Applications
+
+            // store Application status enums as strings
+            modelBuilder.Entity<Application>()
+                .Property(a => a.Status)
+                .HasConversion<string>();
 
             base.OnModelCreating(modelBuilder);
-        }
+        } 
     }
 }

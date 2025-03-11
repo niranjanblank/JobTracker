@@ -36,6 +36,8 @@ namespace JobTracker.Models
 
 		public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
+        // navigation properties
+        public Application? Application { get; set; }
 
-	}
+    }
 }
