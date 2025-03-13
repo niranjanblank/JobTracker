@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JobTracker.Models
 {
-    public class Notes
+    public class Note
     {
         [Key]
         public int Id { get; set; }
@@ -12,9 +12,10 @@ namespace JobTracker.Models
         [ForeignKey("Application")]
         public int ApplicationId { get; set; }
 
-        public string Details { get; set; }
+        public string Details { get; set; } = string.Empty;
 
         public DateTime? CreatedAt { get; set; } // nullable
         public DateTime? LastUpdated { get; set; } // nullable
 
-    } 
+    }
+}

@@ -15,13 +15,14 @@ namespace JobTracker.Models
         [ForeignKey("DocumentType")]
         public int DocumentTypeId { get; set; }
 
-        public string FileName { get; set; }
+        public string FileName { get; set; } = string.Empty;
 
-        public string FileUrl { get; set; }
+        public string FileUrl { get; set; } = string.Empty;
 
         public DateTime UploadedAt { get; set; } = DateTime.UtcNow;
 
         // navigation properties
         public virtual DocumentType? DocumentType { get; set; }
+        public virtual ICollection<ApplicationDocument> ApplicationDocuments { get; set; } = new List<ApplicationDocument>();
     }
 }

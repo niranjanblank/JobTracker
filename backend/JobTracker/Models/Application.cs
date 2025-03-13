@@ -23,6 +23,10 @@ namespace JobTracker.Models
 
         // navigation properties
         public Job? Job { get; set; }
+       
+        public virtual ICollection<ApplicationDocument> ApplicationDocuments { get; set; } = new List<ApplicationDocument>();
+        public virtual ICollection<Note> Notes { get; set; } = new List<Note>();
+        public virtual ICollection<Interview> Interviews { get; set; } = new List<Interview>();
 
     }
 } 

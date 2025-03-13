@@ -25,6 +25,7 @@ namespace JobTracker.Models
         public DateTime? CreatedAt { get; set; } // nullable
         public DateTime? LastUpdated { get; set; } // nullable
 
-        public 
+        // navigation properties
+        public virtual Application? Application { get; set; }
     }
 }

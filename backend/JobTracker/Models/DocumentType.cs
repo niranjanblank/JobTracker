@@ -12,7 +12,7 @@ namespace JobTracker.Models
         public int UserId { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         public string? Description { get; set; }
         public DateTime? CreatedAt { get; set; } // nullable

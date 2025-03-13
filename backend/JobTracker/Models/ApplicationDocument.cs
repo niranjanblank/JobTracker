@@ -20,3 +20,4 @@ namespace JobTracker.Models
         public virtual Application? Application { get; set; }
         public virtual Document? Document { get; set; }
     }
+}
