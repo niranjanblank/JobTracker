@@ -3,26 +3,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JobTracker.Models
 {
-    public class Application
+    public class DocumentType
     {
         [Key]
         public int Id { get; set; }
 
-        [ForeignKey("Job")]
-        public int JobId { get; set; }
-
         [ForeignKey("User")]
         public int UserId { get; set; }
 
-        public ApplicationStatus Status { get; set; } = ApplicationStatus.Draft;
+        [Required]
+        public string Name { get; set; }
 
-        public DateTime? AppliedDate { get; set; } // nullable
-
+        public string? Description { get; set; }
         public DateTime? CreatedAt { get; set; } // nullable
         public DateTime? LastUpdated { get; set; } // nullable
-
-        // navigation properties
-        public Job? Job { get; set; }
-
     }
-} 
+}
