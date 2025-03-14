@@ -28,9 +28,11 @@ builder.Services.AddDbContext<JobDbContext>(options =>
 // Register Generic Repository
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
 
 // Register Services
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ICompanyService, CompanyService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

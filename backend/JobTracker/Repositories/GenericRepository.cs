@@ -45,11 +45,20 @@ namespace JobTracker.Repositories
             return true;
         }
 
-        public async Task<T> UpdateAsync(T entity)
+        public async Task<T> UpdateAsync(T entity, object key)
         {
-            _dbSet.Update(entity);
+            var existingEntity = await _dbSet.FindAsync(key);
+            if (existingEntity == null)
+            {
+                throw new KeyNotFoundException("Entity not found");
+            }
+
+            // Apply only the non-null values from `entity` to `existingEntity`
+            // int are non-nullable by default, if there exists a nullable int, we need to check that in service
+            _context.Entry(existingEntity).CurrentValues.SetValues(entity);
+
             await _context.SaveChangesAsync();
-            return entity;
+            return existingEntity;
         }
 
         public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
