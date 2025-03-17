@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
-using  System.ComponentModel.DataAnnotations.Schema;	
-
+using  System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 namespace JobTracker.Models
 {
 	public class Job
@@ -37,7 +37,8 @@ namespace JobTracker.Models
 		public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
         // navigation properties
-        public Application? Application { get; set; }
+        [JsonIgnore]
+		public Application? Application { get; set; }
 
     }
 }

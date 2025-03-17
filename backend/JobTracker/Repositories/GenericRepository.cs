@@ -53,9 +53,20 @@ namespace JobTracker.Repositories
                 throw new KeyNotFoundException("Entity not found");
             }
 
-            // Apply only the non-null values from `entity` to `existingEntity`
-            // int are non-nullable by default, if there exists a nullable int, we need to check that in service
-            _context.Entry(existingEntity).CurrentValues.SetValues(entity);
+            var entry = _context.Entry(existingEntity);
+            var entityProperties = typeof(T).GetProperties();
+
+            foreach (var property in entityProperties)
+            {
+                var newValue = property.GetValue(entity);
+                var existingValue = property.GetValue(existingEntity);
+
+                // If the new value is not null, or if it's a value type and not default, update it
+                if (newValue != null && (!property.PropertyType.IsValueType || !Equals(newValue, Activator.CreateInstance(property.PropertyType))))
+                {
+                    entry.Property(property.Name).CurrentValue = newValue;
+                }
+            }
 
             await _context.SaveChangesAsync();
             return existingEntity;
