@@ -38,7 +38,7 @@ namespace JobTracker.Models
 
         // navigation properties
         [JsonIgnore]
-		public Application? Application { get; set; }
+		public virtual Application? Application { get; set; }
 
     }
 }
